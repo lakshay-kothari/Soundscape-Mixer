@@ -110,11 +110,12 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     background: radial-gradient(ellipse at top, hsl(var(--ambient-purple)), hsl(var(--background))),
                 radial-gradient(ellipse at bottom right, hsl(var(--ambient-teal)), transparent),
                 radial-gradient(ellipse at bottom left, hsl(var(--ambient-pink)), transparent);
@@ -177,4 +178,40 @@
     0%, 100% { opacity: 0.8; }
     50% { opacity: 1; }
   }
+}
+
+/* Hide arrows only when the 'no-spinner' class is present */
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Custom Scrollbar */
+/* Glassmorphic Gradient Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsla(var(--glass-bg) / 0.3); /* faint glassy background */
+  border-radius: 9999px;
+  box-shadow: 0 0 30px hsla(var(--primary) / 0.3)
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.625); /* purple → pink → blue */
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.201); /* glass border */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25),
+              inset 0 1px 2px rgba(255, 255, 255, 0.3); /* glassy depth */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(var(--accent) / 0.5); /* brighter hover */
 }

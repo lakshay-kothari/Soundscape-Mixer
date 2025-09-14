@@ -1,9 +1,13 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
-  prefix: "",
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -75,27 +79,36 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        move1: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1) rotate(0deg)" },
+          "50%": { transform: "translate(15%, 10%) scale(1.1) rotate(45deg)" },
+        },
+        move2: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1) rotate(0deg)" },
+          "50%": { transform: "translate(-10%, -15%) scale(1.05) rotate(-35deg)" },
+        },
+        move3: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1) rotate(0deg)" },
+          "50%": { transform: "translate(10%, -10%) scale(1.15) rotate(60deg)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        move1: "move1 5s ease-in-out infinite",
+        move2: "move2 8s ease-in-out infinite",
+        move3: "move3 10s ease-in-out infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
+
+export default config;

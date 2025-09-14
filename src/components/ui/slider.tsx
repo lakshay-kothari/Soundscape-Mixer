@@ -1,6 +1,5 @@
-import * as React from "react";
+import * as React from "react"; 
 import * as SliderPrimitive from "@radix-ui/react-slider";
-
 import { cn } from "@/lib/utils";
 
 const Slider = React.forwardRef<
@@ -21,39 +20,35 @@ const Slider = React.forwardRef<
   >
     <SliderPrimitive.Track 
       className={cn(
-        "relative grow overflow-hidden bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 shadow-inner",
+        "relative grow overflow-hidden rounded-full",
         orientation === "vertical" 
-          ? "h-full w-3 rounded-full border border-slate-500" 
-          : "h-3 w-full rounded-full border border-slate-500"
+          ? "h-full w-2" 
+          : "h-2 w-full"
       )}
       style={{
-        background: orientation === "vertical" 
-          ? "linear-gradient(to right, #334155, #475569, #334155)"
-          : "linear-gradient(to bottom, #334155, #475569, #334155)",
-        boxShadow: "inset 0 2px 4px rgba(0,0,0,0.3), inset 0 -1px 2px rgba(255,255,255,0.1)"
+        background: "rgba(255,255,255,0.1)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        border: "1px solid rgba(255,255,255,0.2)",
       }}
     >
       <SliderPrimitive.Range 
         className={cn(
-          "absolute bg-gradient-to-t from-amber-400 to-amber-200 shadow-sm",
+          "absolute rounded-full",
           orientation === "vertical" 
-            ? "w-full rounded-full" 
-            : "h-full rounded-full"
+            ? "w-full" 
+            : "h-full"
         )}
         style={{
           background: orientation === "vertical"
-            ? "linear-gradient(to top, #f59e0b, #fbbf24)"
-            : "linear-gradient(to right, #f59e0b, #fbbf24)",
-          boxShadow: "0 1px 2px rgba(0,0,0,0.2)"
+            ? "linear-gradient(to top, #a855f7, #3b82f6, #ec4899)"
+            : "linear-gradient(to right, #a855f7, #3b82f6, #ec4899)",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.25)",
         }}
       />
     </SliderPrimitive.Track>
     <SliderPrimitive.Thumb 
-      className="block h-6 w-4 rounded-sm border border-slate-400 bg-gradient-to-b from-slate-100 via-slate-200 to-slate-300 shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:shadow-xl"
-      style={{
-        background: "linear-gradient(to bottom, #f1f5f9, #e2e8f0, #cbd5e1)",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(0,0,0,0.1)"
-      }}
+      className="block h-4 w-4 rounded-full border border-white/40 bg-white/30 backdrop-blur-md shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:scale-110"
     />
   </SliderPrimitive.Root>
 ));

@@ -17,13 +17,13 @@ export interface SoundMix {
 const SOUNDS_DATA: Omit<Sound, 'isPlaying' | 'volume' | 'audio'>[] = [
   { id: 'rain', name: 'Rain' },
   { id: 'birdsong', name: 'Birdsong' },
-  { id: 'ocean', name: 'Ocean Waves' },
+  { id: 'ocean', name: 'Ocean' },
   { id: 'stream', name: 'Stream' },
   { id: 'bonfire', name: 'Bonfire' },
   { id: 'toads', name: 'Toads' },
   { id: 'bowl', name: 'Bowl' },
   { id: 'healing', name: 'Healing' },
-  { id: 'whitenoise', name: 'White Noise' },
+  { id: 'whitenoise', name: 'Noise' },
 ];
 
 export const useSoundscape = () => {
