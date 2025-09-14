@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Relaxation Soundscape Design System - Soft pastels and ambient lighting */
+
+@layer base {
+  :root {
+    /* Ambient background gradients */
+    --background: 240 30% 8%;
+    --foreground: 240 15% 95%;
+
+    /* Frosted glass panels */
+    --card: 240 20% 12%;
+    --card-foreground: 240 10% 90%;
+
+    --popover: 240 25% 15%;
+    --popover-foreground: 240 10% 90%;
+
+    /* Soft pastel primary - dreamy purple */
+    --primary: 270 50% 65%;
+    --primary-foreground: 240 15% 95%;
+
+    /* Soft secondary - gentle teal */
+    --secondary: 180 40% 70%;
+    --secondary-foreground: 240 20% 15%;
+
+    /* Muted tones */
+    --muted: 240 15% 20%;
+    --muted-foreground: 240 10% 70%;
+
+    /* Accent - soft pink */
+    --accent: 320 45% 75%;
+    --accent-foreground: 240 20% 15%;
+
+    --destructive: 0 70% 70%;
+    --destructive-foreground: 240 15% 95%;
+
+    --border: 240 20% 25%;
+    --input: 240 20% 18%;
+    --ring: 270 50% 65%;
+
+    /* Ambient colors */
+    --ambient-purple: 270 60% 25%;
+    --ambient-blue: 220 70% 20%;
+    --ambient-teal: 180 50% 25%;
+    --ambient-pink: 320 50% 30%;
+
+    /* Glass morphism */
+    --glass-bg: 240 20% 15%;
+    --glass-border: 240 30% 30%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: radial-gradient(ellipse at top, hsl(var(--ambient-purple)), hsl(var(--background))),
+                radial-gradient(ellipse at bottom right, hsl(var(--ambient-teal)), transparent),
+                radial-gradient(ellipse at bottom left, hsl(var(--ambient-pink)), transparent);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  /* Glass morphism effects */
+  .glass {
+    background: hsla(var(--glass-bg) / 0.3);
+    border: 1px solid hsla(var(--glass-border) / 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .glass-strong {
+    background: hsla(var(--glass-bg) / 0.6);
+    border: 1px solid hsla(var(--glass-border) / 0.3);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
+
+  /* Ambient glow effects */
+  .glow-primary {
+    box-shadow: 0 0 30px hsla(var(--primary) / 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsla(var(--accent) / 0.4);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 25px hsla(var(--secondary) / 0.3);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Floating animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+}
+
+@layer keyframes {
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+}
