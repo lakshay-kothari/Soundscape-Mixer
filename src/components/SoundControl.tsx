@@ -12,6 +12,7 @@ import {
   Heart, 
   Wind, 
   Music,
+  Plane,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
@@ -19,8 +20,8 @@ import { Sound } from '@/hooks/useSoundscape';
 
 interface SoundControlProps {
   sound: Sound;
-  onToggle: () => void;
-  onVolumeChange: (volume: number) => void;
+  onToggle: (soundId: string) => void;
+  onVolumeChange: (soundId: string, volume: number) => void;
 }
 
 const getSoundIcon = (soundName: string) => {
@@ -32,7 +33,7 @@ const getSoundIcon = (soundName: string) => {
     Bonfire: Flame,
     Toads: Music2,
     Bowl: Circle,
-    Healing: Heart,
+    Plane: Plane,
     Noise: Zap,
     Wind: Wind,
   };
@@ -69,10 +70,11 @@ export const SoundControl = ({ sound, onToggle, onVolumeChange }: SoundControlPr
         <Slider
           value={[sound.isPlaying ? sound.volume : 0]}
           onValueChange={([value]) => {
+            console.log('Slider value:', value); // Debugging log
             if (!sound.isPlaying) {
-              onToggle();
+              onToggle(sound.id);
             }
-            onVolumeChange(value);
+            onVolumeChange(sound.id, value);
           }}
           max={1}
           step={0.01}
@@ -84,7 +86,7 @@ export const SoundControl = ({ sound, onToggle, onVolumeChange }: SoundControlPr
 
       {/* Mute/Unmute Button */}
       <Button
-        onClick={onToggle}
+        onClick={() => onToggle(sound.id)}
         variant="glass"
         size="sm"
         className={`

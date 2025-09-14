@@ -1,8 +1,16 @@
 import { useState, useRef, useCallback } from 'react';
+import rainSound from '@/assets/sounds/rain.mp3';
+import birdsongSound from '@/assets/sounds/birds.mp3';
+import oceanSound from '@/assets/sounds/ocean.mp3';
+import streamSound from '@/assets/sounds/stream.mp3';
+import planeSound from '@/assets/sounds/plane.mp3';
+import toadSound from '@/assets/sounds/toads.mp3';
+
 
 export interface Sound {
   id: string;
   name: string;
+  file: string; // Add this property
   isPlaying: boolean;
   volume: number;
   audio?: HTMLAudioElement;
@@ -15,15 +23,15 @@ export interface SoundMix {
 }
 
 const SOUNDS_DATA: Omit<Sound, 'isPlaying' | 'volume' | 'audio'>[] = [
-  { id: 'rain', name: 'Rain' },
-  { id: 'birdsong', name: 'Birdsong' },
-  { id: 'ocean', name: 'Ocean' },
-  { id: 'stream', name: 'Stream' },
-  { id: 'bonfire', name: 'Bonfire' },
-  { id: 'toads', name: 'Toads' },
-  { id: 'bowl', name: 'Bowl' },
-  { id: 'healing', name: 'Healing' },
-  { id: 'whitenoise', name: 'Noise' },
+  { id: 'rain', name: 'Rain', file: rainSound },
+  { id: 'birds', name: 'Birdsong', file: birdsongSound },
+  { id: 'ocean', name: 'Ocean', file: oceanSound },
+  { id: 'stream', name: 'Stream', file: streamSound },
+  { id: 'bonfire', name: 'Bonfire', file: 'src/assets/sounds/bonfire.mp3' },
+  { id: 'toads', name: 'Toads', file: toadSound },
+  { id: 'bowl', name: 'Bowl', file: '/sounds/bowl.mp3' },
+  { id: 'plane', name: 'Plane', file: planeSound },
+  { id: 'whitenoise', name: 'Noise', file: '/sounds/whitenoise.mp3' },
 ];
 
 export const useSoundscape = () => {
@@ -43,23 +51,28 @@ export const useSoundscape = () => {
   const audioRefs = useRef<Record<string, HTMLAudioElement>>({});
   const fadeTimeouts = useRef<Record<string, NodeJS.Timeout>>({});
 
-  // Initialize audio elements (placeholder - would use real audio files)
   const initializeAudio = useCallback((soundId: string) => {
-    if (!audioRefs.current[soundId]) {
-      // In a real app, you would load actual audio files here
-      // For now, we'll create silent audio elements as placeholders
-      const audio = new Audio();
-      audio.loop = true;
-      audio.volume = 0;
-      audioRefs.current[soundId] = audio;
+    if(!audioRefs.current[soundId]) {
+      const sound = sounds.find(s => s.id === soundId);
+      if(sound) {
+        const audio = new Audio(sound.file);
+        audio.loop = true;
+        audio.volume = sound.volume;
+        audioRefs.current[soundId] = audio;
+        audio.play().catch(console.error);
+      }
     }
-  }, []);
+    const audio = audioRefs.current[soundId];
+    if(audio) {
+      audio.play().catch(console.error);
+    }
+  }, [sounds]);
 
   const toggleSound = useCallback((soundId: string) => {
     setSounds(prev => prev.map(sound => {
       if (sound.id === soundId) {
         const newPlaying = !sound.isPlaying;
-        initializeAudio(soundId);
+        initializeAudio(soundId); // Ensure audio is initialized
         
         if (newPlaying) {
           const audio = audioRefs.current[soundId];
@@ -76,7 +89,8 @@ export const useSoundscape = () => {
   }, [initializeAudio]);
 
   const setVolume = useCallback((soundId: string, volume: number) => {
-    setSounds(prev => prev.map(sound => {
+    setSounds(prev => 
+      prev.map(sound => {
       if (sound.id === soundId) {
         const audio = audioRefs.current[soundId];
         if (audio) {

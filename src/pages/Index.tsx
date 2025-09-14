@@ -55,11 +55,11 @@ const Index = () => {
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-3 animate-pulse-soft">
             <h1 className="text-4xl md:text-5xl font-bold bg-white bg-clip-text text-transparent">
-              Sound Equalizer
+              SOUNDSCAPES
             </h1>
           </div>
           
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-3xl mx-auto">
             Mix your perfect relaxation environment. Adjust each sound like a professional equalizer.
           </p>
         
@@ -83,8 +83,14 @@ const Index = () => {
                   key={sound.id}
                   sound={sound}
                   onToggle={() => toggleSound(sound.id)}
-                  onVolumeChange={(volume) => setVolume(sound.id, volume)}
-                />
+                  onVolumeChange={(soundId, volume) => {
+                    console.log('Volume:', volume);
+                    const validVolume = Array.isArray(volume) ? volume[0] : volume; // Handle slider's array value
+                    if (typeof validVolume === 'number' && validVolume >= 0 && validVolume <= 1) {
+                      setVolume(soundId, validVolume);
+                    }
+                  }}
+                  />
               ))}
             </div>
             
