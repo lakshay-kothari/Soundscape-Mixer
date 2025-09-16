@@ -68,7 +68,7 @@ export const MixManager = ({ savedMixes, onSaveMix, onLoadMix, onDeleteMix }: Mi
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
         border: "1px solid rgba(255, 255, 255, 0.15)",
         boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
-        height: '300px',
+        height: 'auto'
       }}
     >
       {/* Ambient glow overlay */}

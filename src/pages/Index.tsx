@@ -26,7 +26,7 @@ const Index = () => {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Animated Gradient Mesh Background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="fixed inset-0 -z-10= overflow-hidden">
         {/* Blob 1 – centered */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
@@ -77,7 +77,7 @@ const Index = () => {
             </h2>
             */}
             
-            <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center justify-center space-x-4 ">
               {sounds.map((sound) => (
                 <SoundControl
                   key={sound.id}
@@ -118,10 +118,6 @@ const Index = () => {
 
         {/* Side Panel */}
         <div className="grid lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {/* Timer Controls */}
-          <div className="p-6 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-md">
-            <TimerControls onTimerComplete={handleTimerComplete} />
-          </div>
           
           {/* Mix Manager */}
           <div className="p-6 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-md">
@@ -132,7 +128,18 @@ const Index = () => {
               onDeleteMix={deleteMix}
             />
           </div>
+
+          {/* Timer Controls */}
+          <div className="p-6 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-md">
+            <TimerControls onTimerComplete={handleTimerComplete} />
+          </div>
+
         </div>
+
+        <div className="text-center text-sm text-slate-400 italic mt-4 lg:mt-0">
+          Made by <a href="https://www.linkedin.com/in/lakshay-kothari/" className="underline hover:text-white">Lakshay Kothari</a>  <span>🔥</span>
+        </div>
+
       </div>
     </div>
   );

@@ -7,12 +7,10 @@ import {
   Droplets, 
   Zap, 
   Flame, 
-  Music2, 
-  Circle, 
-  Heart, 
-  Wind, 
   Music,
   Plane,
+  Orbit,
+  LibraryBig
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
@@ -27,15 +25,15 @@ interface SoundControlProps {
 const getSoundIcon = (soundName: string) => {
   const iconMap = {
     Rain: CloudRain,
-    Birdsong: Bird,
+    Birds: Bird,
     Ocean: Waves,
     Stream: Droplets,
     Bonfire: Flame,
-    Toads: Music2,
-    Bowl: Circle,
     Plane: Plane,
     Noise: Zap,
-    Wind: Wind,
+    Library: LibraryBig,
+    Chimes: Music,
+    Space: Orbit,
   };
   return iconMap[soundName as keyof typeof iconMap] || Music;
 };
@@ -90,10 +88,10 @@ export const SoundControl = ({ sound, onToggle, onVolumeChange }: SoundControlPr
         variant="glass"
         size="sm"
         className={`
-          w-8 h-8 rounded-md mb-4 transition-all
+          w-8 h-8 rounded-md mb-4 transition-all items-center justify-center flex mx-auto
           ${sound.isPlaying 
             ? 'text-pink-300 hover:text-pink-200' 
-            : 'text-slate-400 hover:text-slate-300'
+            : 'text-slate-300 hover:text-slate-200'
           }
         `}
       >
@@ -105,12 +103,12 @@ export const SoundControl = ({ sound, onToggle, onVolumeChange }: SoundControlPr
       </Button>
 
       {/* Sound Icon */}
-      <div className="flex items-center justify-center mb-1 relative z-10">
+      <div className="flex items-center justify-center mb-1 relative z-10 mx-auto">
         <SoundIcon className="w-4 h-4 text-slate-100" />
       </div>
 
       {/* Sound Name */}
-      <div className="text-xs text-slate-100 text-center leading-tight font-medium relative z-10" style={{ minHeight: "40px" }}>
+      <div className="text-xs text-slate-100 text-center leading-tight font-medium relative z-10" style={{ minHeight: "20px" }}>
         {sound.name.split(' ').map((word, i) => (
           <div key={i}>{word}</div>
         ))}

@@ -4,8 +4,11 @@ import birdsongSound from '@/assets/sounds/birds.mp3';
 import oceanSound from '@/assets/sounds/ocean.mp3';
 import streamSound from '@/assets/sounds/stream.mp3';
 import planeSound from '@/assets/sounds/plane.mp3';
-import toadSound from '@/assets/sounds/toads.mp3';
-
+import librarySound from '@/assets/sounds/library.mp3';
+import bonfireSound from '@/assets/sounds/bonfire.mp3';
+import chimesSound from '@/assets/sounds/chimes.mp3';
+import spaceSound from '@/assets/sounds/space.mp3';
+import whitenoiseSound from '@/assets/sounds/whitenoise.mp3';
 
 export interface Sound {
   id: string;
@@ -24,14 +27,15 @@ export interface SoundMix {
 
 const SOUNDS_DATA: Omit<Sound, 'isPlaying' | 'volume' | 'audio'>[] = [
   { id: 'rain', name: 'Rain', file: rainSound },
-  { id: 'birds', name: 'Birdsong', file: birdsongSound },
+  { id: 'birds', name: 'Birds', file: birdsongSound },
   { id: 'ocean', name: 'Ocean', file: oceanSound },
   { id: 'stream', name: 'Stream', file: streamSound },
-  { id: 'bonfire', name: 'Bonfire', file: 'src/assets/sounds/bonfire.mp3' },
-  { id: 'toads', name: 'Toads', file: toadSound },
-  { id: 'bowl', name: 'Bowl', file: '/sounds/bowl.mp3' },
+  { id: 'bonfire', name: 'Bonfire', file: bonfireSound },
+  { id: 'library', name: 'Library', file: librarySound },
+  { id: 'chimes', name: 'Chimes', file: chimesSound },
   { id: 'plane', name: 'Plane', file: planeSound },
-  { id: 'whitenoise', name: 'Noise', file: '/sounds/whitenoise.mp3' },
+  { id: 'whitenoise', name: 'Noise', file: whitenoiseSound },
+  { id: 'space', name: 'Space', file: spaceSound },
 ];
 
 export const useSoundscape = () => {
